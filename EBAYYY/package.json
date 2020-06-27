@@ -1,0 +1,20 @@
+{
+  "name": "ebayyy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "route_angmongo.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.1",
+    "express-validator": "^3.1.2",
+    "mongodb": "^2.2.25",
+    "vcap_services": "^0.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node route_angmongo.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

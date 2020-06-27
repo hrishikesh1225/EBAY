@@ -1,0 +1,60 @@
+<html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<head>
+    <script src="angular/angular.min.js"> </script>
+    <style>
+       .t1
+       {
+           background-color:white;
+       }
+    </style>
+</head>
+<script> var myModule = angular.module("myApp",[])  </script>
+<body ng-app="myApp" class="t1">
+    <form ng-controller='appController' ng-submit="send()"> <!--send() function from the controller is called on form submission -->
+    
+    <img src="https://image.shutterstock.com/image-photo/fresh-fruitsassorted-fruits-colorful-background-600w-252338818.jpg">
+    <h2>Would You like to buy fruits? </h2> 
+
+        <div ng-init = "data.Eno = '5'"></div>
+        <div ng-init = "data.Ename = 'Fruit'"></div>
+        <div ng-init = "data.loc = 'Bangalore'"></div>
+        
+        <button ng-click="submit">Buy item</button>
+       <div><pre>{{response.data}}</pre>  </div>
+    </form>
+ 
+<a href="home.html">Back</a>
+
+     <script>
+	 myModule.controller ("appController",
+        function appController($scope, $http) {
+            /*$http directive is used to communicate to the server */
+            $scope.data = {}
+            $scope.response = {}
+			
+            $scope.send = function () {
+                /*executed when submit is clicked*/          
+				console.log($scope.data.name);
+                var posting = $http({
+			/*posting to /process_get  */
+                    //method: 'GET',
+                    //url: '/process_get',
+                    //params: $scope.data,
+			/*posting to /process_post*/
+                    method: 'POST',
+                    url: '/process_post',
+                    data: $scope.data,
+                    
+                }).then (function (response) {
+                    /*executed when server responds back*/
+                    console.log(response);
+                    $scope.response.data = response.data;
+                },function (error){
+					console.log(error);
+			});
+            }
+        });
+    </script>
+</body>
+</html>
